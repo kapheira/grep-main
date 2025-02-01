@@ -1,0 +1,3 @@
+C:/Users/cihan/CLionProjects/Grep_Command/cmake-build-debug/CMakeFiles/Grep_Command.dir
+C:/Users/cihan/CLionProjects/Grep_Command/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/cihan/CLionProjects/Grep_Command/cmake-build-debug/CMakeFiles/rebuild_cache.dir
