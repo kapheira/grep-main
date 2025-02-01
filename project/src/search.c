@@ -27,11 +27,11 @@ int contains(const char *line, const char *term, int ignore_case) {
 }
 
 
-void search_file(const char *search_term, const char *filename, int ignore_case, int invert_match, int show_line_numbers) {
+int search_file(const char *search_term, const char *filename, int ignore_case, int invert_match, int show_line_numbers, int count_only) {
     FILE *file = fopen(filename, "r");
     if (!file) {
-        fprintf(stderr, "grep: %s: No such file or such a directory'\n", filename);
-        return;
+        fprintf(stderr, "grep: %s: No such file or directory\n", filename);
+        return 0;
     }
 
     char line[BUFFER_SIZE];
@@ -45,23 +45,29 @@ void search_file(const char *search_term, const char *filename, int ignore_case,
         }
 
         if (match) {
-            pthread_mutex_lock(&print_mutex); 
-            if (show_line_numbers) {
-                printf("%s:%d:%s \n", filename, line_number, line);
-            } else {
-                printf("%s: %s \n", filename, line);
+            if (!count_only) {  // -c aktif değilse yazdır
+                pthread_mutex_lock(&print_mutex);
+                if (show_line_numbers) {
+                    printf("%s:%d:%s", filename, line_number, line);
+                } else {
+                    printf("%s: %s", filename, line);
+                }
+                pthread_mutex_unlock(&print_mutex);
             }
-            printf("%s", line);
-            pthread_mutex_unlock(&print_mutex);
-            match_count++;
+            match_count++;  // Eşleşme sayısını artır
         }
         line_number++;
     }
 
     fclose(file);
 
-    pthread_mutex_lock(&print_mutex);  
-    printf("\nFile '%s': %d match(es) found.\n", filename, match_count);
-    pthread_mutex_unlock(&print_mutex); 
-}
+    if (count_only) {
+        return match_count;  // -c modunda sadece eşleşme sayısını döndür
+    }
 
+    pthread_mutex_lock(&print_mutex);
+    printf("\nFile '%s': %d match(es) found.\n", filename, match_count);
+    pthread_mutex_unlock(&print_mutex);
+
+    return 0;  // Normal modda döndür
+}
