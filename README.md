@@ -1,82 +1,80 @@
-# GREP-MAIN
+# GREP Command in Linux
 
-Bu proje, klasik **grep** komut satırı aracının C diliyle yazılmış bir uygulamasıdır. `grep-main`, dosyalar veya metin girdileri içinde belirli desenleri (pattern) aramak için kullanılabilir.
+This project is a reimplementation of the classic **grep** command in C. The "mygrep" command allows users to search for specific patterns in files or text inputs.
 
-## 🚀 Özellikler
-- **Desen Arama:** Belirli kelimeleri veya düzenli ifadeleri (regex) arama yeteneği.
-- **Çoklu Dosya Desteği:** Aynı anda birden fazla dosyada arama yapabilir.
-- **Hızlı Performans:** Optimize edilmiş C kodu ile hızlı arama işlemleri.
-- **Basit ve Hafif:** Komut satırından kolay kullanım.
+## 🚀 Features
+- **Pattern Searching:** Search for specific words or regular expressions (regex).
+- **Multiple File Support:** Search through multiple files simultaneously.
+- **High Performance:** Optimized C code for fast searching.
+- **Simple and Lightweight:** Easy command-line usage.
 
-## 📦 Kurulum
+## 📦 Installation
+Clone the repository to your local machine:
 
-Projeyi yerel bilgisayarınıza klonlamak için:
-
-```bash
-git clone https://github.com/kapheira/grep-main.git
-cd grep-main
+```sh
+git clone https://github.com/CihanC1/Grep_Command.git
+cd Grep_Command
 ```
 
-### CMake ile Derleme:
-
-```bash
+### Build with CMake:
+```sh
 mkdir build
 cd build
 cmake ..
 make
 ```
 
-### Makefile ile Derleme:
-
-```bash
+### Build with Makefile:
+```sh
 make
 ```
 
-## 📊 Kullanım
+## 📊 Usage
+Once compiled, you can run the "mygrep" command as follows:
 
-Derleme tamamlandıktan sonra `mygrep` dosyasını çalıştırabilirsiniz:
-
-```bash
-./mygrep <desen> <dosya_yolu> [seçenekler]
+```sh
+./mygrep <pattern> <file_path> [options]
 ```
 
-### Kullanılabilir Bayraklar (Flags):
+### Available Flags:
+- `-i` : Ignore case sensitivity (case-insensitive search).
+- `-v` : Display lines that do not match the pattern (inverse search).
+- `-c` : Return the count of matching lines.
+- `-n` : Display line numbers for matched results.
+- `-r` : Recursively search within directories.
 
-- `-i` : Büyük/küçük harf duyarlılığını yok sayar (case-insensitive arama).
-- `-v` : Belirtilen desenle eşleşmeyen satırları gösterir (ters arama).
-- `-c` : Eşleşen satırların sayısını döndürür.
-- `-n` : Eşleşen satırların satır numaralarını gösterir.
-- `-r` : Dizinler içinde yinelemeli (recursive) arama yapar.
+### Examples:
 
-### Örnekler:
-
-- **Basit Arama:**
-  ```bash
-  ./mygrep "merhaba" test1.txt
+- **Simple Search:**
+  ```sh
+  ./mygrep "error" test_data.txt
   ```
-  Belirtilen dosyada "merhaba" kelimesini arar.
+  Searches for the word "error" in the `test_data.txt` file.
 
-- **Büyük/Küçük Harf Duyarsız Arama:**
-  ```bash
-  ./mygrep -i "Merhaba" test1.txt
+- **Case-Insensitive Search:**
+  ```sh
+  ./mygrep -i "Warning" test_data.txt
   ```
-  "Merhaba", "MERHABA" veya "merhaba" gibi varyasyonları arar.
+  Searches for "Warning", "WARNING", or "warning" variations.
 
-- **Ters Arama:**
-  ```bash
-  ./mygrep -v "hata" test2.txt
+- **Inverse Search:**
+  ```sh
+  ./mygrep -v "failure" test_data.txt
   ```
-  "hata" kelimesi içermeyen satırları gösterir.
+  Displays lines that do **not** contain "failure".
 
-- **Satır Numarası ile Arama:**
-  ```bash
-  ./mygrep -n "uyarı" test1.txt
+- **Search with Line Numbers:**
+  ```sh
+  ./mygrep -n "success" test_data.txt
   ```
-  "uyarı" kelimesinin geçtiği satır numaralarını gösterir.
+  Shows the line numbers where "success" appears.
 
-- **Recursive Arama:**
-  ```bash
-  ./mygrep -r "todo" ./src
+- **Recursive Search in Directories:**
+  ```sh
+  ./mygrep -r "TODO" ./project
   ```
-  `src` klasörü içinde "todo" kelimesini arar.
+  Searches for "TODO" inside the `project` directory.
+
+## License
+This project is licensed under the MIT License. For more details, see the [LICENSE](LICENSE) file.
 
