@@ -81,6 +81,3 @@ Once compiled, you can run the "mygrep" command as follows:
   ```
   Searches for "TODO" inside the `project` directory.
 
-## License
-This project is licensed under the MIT License. For more details, see the [LICENSE](LICENSE) file.
-
