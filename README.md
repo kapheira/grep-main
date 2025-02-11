@@ -16,6 +16,12 @@ git clone https://github.com/CihanC1/Grep_Command.git
 cd Grep_Command
 ```
 
+### Requirements
+- Linux or macOS operating system
+- C compiler (gcc or clang)
+- CMake and Make
+- Shell command-line access
+
 ### Build with CMake:
 ```sh
 mkdir build
