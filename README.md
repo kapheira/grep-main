@@ -39,7 +39,7 @@ make
 Once compiled, you can run the "mygrep" command as follows:
 
 ```sh
-./mygrep <pattern> <file_path> [options]
+./mygrep [options] <pattern> <file_path> 
 ```
 
 ### Available Flags:
